@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.2.0
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    # 生产环境请使用下面的配置
+    # volumes:
+    # - /data/data/MySQL:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PROJECT_NAME}${PASSWORD_SUFFIX}
+      TZ: Asia/Shanghai
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:5.2.1
+    restart: unless-stopped
+    ports:
+      - 3307:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
