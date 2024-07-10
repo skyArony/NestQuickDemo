@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   mysql:
-    container_name: mysql
+    # container_name: mysql
     image: mysql:8.2.0
     restart: unless-stopped
     ports:
@@ -14,7 +14,7 @@ services:
       TZ: Asia/Shanghai
 
   phpmyadmin:
-    container_name: phpmyadmin
+    # container_name: phpmyadmin
     image: phpmyadmin:5.2.1
     restart: unless-stopped
     ports:

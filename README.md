@@ -1,3 +1,13 @@
+# 目前有的模块
+- [x] 用户模块
+- [x] JWT模块 & 跳过鉴权装饰器
+- [x] TypeORM 模块
+- [x] 统一错误处理模块
+- [x] 统一返回格式模块
+- [x] 基础日志使用示例
+- [x] `.env` 读取
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
