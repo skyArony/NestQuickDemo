@@ -87,4 +87,9 @@ Env.get()
 
 // 其他配置
 this.configSvc.get<string>('app.name')
+
+// 非注入获取其他配置
+appConfig().app.name
+
+// 尽量不直接使用 process.env
 ```
