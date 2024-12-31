@@ -9,76 +9,49 @@
 - [x] 请求记录打点
 
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ pnpm install
+# 项目结构
 ```
-
-## Running the app
-
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+src/
+├── app.module.ts       # 主模块文件
+├── main.ts             # 应用入口文件
+├── common/             # 通用模块和工具
+│   ├── decorators/     # 自定义装饰器
+│   ├── filters/        # 全局异常过滤器
+│   ├── interceptors/   # 拦截器
+│   ├── guards/         # 守卫
+│   ├── pipes/          # 管道
+│   ├── utils/          # 工具函数
+├── config/             # 配置相关
+│   ├── app.config.ts   # 应用配置
+│   ├── database.config.ts # 数据库配置
+├── modules/            # 功能模块
+│   ├── users/          # 用户模块
+│   │   ├── users.controller.ts
+│   │   ├── users.service.ts
+│   │   ├── users.module.ts
+│   │   ├── dto/        # 数据传输对象
+│   │   ├── entities/   # 数据实体
+│   ├── auth/           # 认证模块
+│       ├── auth.controller.ts
+│       ├── auth.service.ts
+│       ├── auth.module.ts
+│       ├── strategies/ # 策略（如 JWT 或 Local）
+│       ├── guards/     # 模块级守卫
+├── database/           # 数据库相关
+│   ├── entities/       # 实体类（若使用 TypeORM 或 Prisma）
+│   ├── migrations/     # 数据库迁移文件
+│   ├── seeds/          # 数据库种子文件
+├── interfaces/         # 公共接口
+│   ├── user.interface.ts
+│   ├── auth.interface.ts
+├── middleware/         # 中间件
+│   ├── logger.middleware.ts
+├── tests/              # 测试文件夹
+│   ├── e2e/            # 端到端测试
+│   ├── unit/           # 单元测试
+│   ├── mocks/          # 测试用的 Mock 数据
+└── shared/             # 共享模块
+    ├── cache/          # 缓存模块（如 Redis）
+    ├── mailer/         # 邮件模块
+    ├── logging/        # 日志模块
 ```
-
-## Test
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
