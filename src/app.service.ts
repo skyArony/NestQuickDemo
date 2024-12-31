@@ -9,9 +9,9 @@ export class AppService {
   getHello(): any {
     return {
       NODE_ENV: Env.get(),
-      APP_NAME: this.configSvc.get<string>('appConfig.appName'),
-      APP_VERSION: this.configSvc.get<string>('appConfig.version'),
-      LOG_LEVEL: this.configSvc.get<string>('loggerConfig.level'),
+      APP_NAME: this.configSvc.get<string>('app.name'),
+      APP_VERSION: this.configSvc.get<string>('app.version'),
+      LOG_LEVEL: this.configSvc.get<string>('logger.level'),
     };
   }
 }

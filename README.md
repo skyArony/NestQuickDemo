@@ -78,3 +78,14 @@ src/
     isActive: boolean;
     }
     ```
+
+# 使用细节
+
+## 配置
+```typescript
+// 配置读取 - NODE_ENV 环境变量
+Env.get()
+
+// 其他配置
+this.configSvc.get<string>('app.name')
+```

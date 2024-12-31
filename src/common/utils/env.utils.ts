@@ -11,7 +11,8 @@ export enum EnvType {
 }
 
 /**
- * 环境变量工具类
+ * 环境变量静态工具类
+ * 在不方便使用 ConfigService 的地方使用
  */
 export class Env {
   /**
@@ -27,11 +28,11 @@ export class Env {
   }
 
   /**
-   * 返回 .env 文件路径
-   * 优先级: .env.development > .env
-   * .env 中全部是生产环境配置, .env.development 中是开发环境特有配置, 会覆盖 .env 中的配置
+   * 返回 .env.* 文件路径
+   * 优先级: .env.xxx > .env
+   * .env 中全部是生产环境配置, .env.xxx 中是指定环境特有配置, 会覆盖 .env 中的配置
    */
-  static DotEnvFile(): string[] {
+  static dotEnvFile(): string[] {
     const baseEnv = path.resolve('.env');
     const envFiles = [baseEnv];
 
