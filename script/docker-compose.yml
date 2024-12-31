@@ -10,7 +10,7 @@ services:
     # volumes:
     # - /data/data/MySQL:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${PROJECT_NAME}${PASSWORD_SUFFIX}
+      MYSQL_ROOT_PASSWORD: ${APP_NAME}${PASSWORD_SUFFIX}
       TZ: Asia/Shanghai
 
   phpmyadmin:

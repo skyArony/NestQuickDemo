@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
     }
     try {
       const payload = await this.jwtService.verifyAsync(token, {
-        secret: process.env['PROJECT_NAME'] + process.env['PASSWORD_SUFFIX'],
+        secret: process.env['APP_NAME'] + process.env['PASSWORD_SUFFIX'],
       });
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

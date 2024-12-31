@@ -10,6 +10,6 @@ async function bootstrap() {
     new ResponseFormatInterceptor(app.get(Reflector)), // 统一返回结构
   );
 
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();

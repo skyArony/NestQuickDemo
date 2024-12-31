@@ -1,0 +1,51 @@
+import * as fs from 'fs';
+import * as path from 'path';
+
+/**
+ * 环境类型
+ */
+export enum EnvType {
+  PRODUCTION = 'production',
+  DEVELOPMENT = 'development',
+  TEST = 'test',
+}
+
+/**
+ * 环境变量工具类
+ */
+export class Env {
+  /**
+   * 尽量用这个方法, 不要用 this.configSvc.get<string>('NODE_ENV')
+   * 保持统一
+   */
+  static get(): EnvType {
+    return (process.env.NODE_ENV as EnvType) || EnvType.DEVELOPMENT;
+  }
+
+  static is(env: EnvType): boolean {
+    return process.env.NODE_ENV === env;
+  }
+
+  /**
+   * 返回 .env 文件路径
+   * 优先级: .env.development > .env
+   * .env 中全部是生产环境配置, .env.development 中是开发环境特有配置, 会覆盖 .env 中的配置
+   */
+  static DotEnvFile(): string[] {
+    const baseEnv = path.resolve('.env');
+    const envFiles = [baseEnv];
+
+    // 检查基础 .env 文件
+    if (!fs.existsSync(baseEnv)) {
+      throw new Error('缺少环境配置文件: .env');
+    }
+
+    // 根据 NODE_ENV 加载特定的 .env 文件
+    const specificEnv = path.resolve(`.env.${process.env.NODE_ENV}`);
+    if (fs.existsSync(specificEnv)) {
+      envFiles.unshift(specificEnv);
+    }
+
+    return envFiles;
+  }
+}

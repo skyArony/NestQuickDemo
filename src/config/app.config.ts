@@ -4,6 +4,11 @@ export const appConfig = {
   port: parseInt(process.env.APP_PORT, 10) || 3000,
 };
 
+export const loggerConfig = {
+  level: process.env.LOG_LEVEL || 'info',
+  format: process.env.LOG_FORMAT || 'json',
+};
+
 export const databaseConfig = {
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT, 10) || 5432,
@@ -15,11 +20,6 @@ export const databaseConfig = {
 export const jwtConfig = {
   secret: process.env.JWT_SECRET || 'defaultSecret',
   expiresIn: process.env.JWT_EXPIRES_IN || '1h',
-};
-
-export const loggerConfig = {
-  level: process.env.LOG_LEVEL || 'info',
-  format: process.env.LOG_FORMAT || 'json',
 };
 
 export const cacheConfig = {
