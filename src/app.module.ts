@@ -10,13 +10,15 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { GetDotEnvFile } from './common/utils/env';
 import LoggingInterceptor from './common/interceptors/logging.interceptor';
+import { appConfig } from '@app/cofig/app.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      cache: true,
-      envFilePath: GetDotEnvFile(),
+      cache: true, // 缓存环境变量, 提高性能
+      envFilePath: GetDotEnvFile(), // .env 文件路径
+      load: [() => ({ appConfig })], // 动态加载配置
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
