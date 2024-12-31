@@ -55,3 +55,25 @@ src/
     ├── mailer/         # 邮件模块
     ├── logging/        # 日志模块
 ```
+
+- 在 NestJS 社区和官方文档中，middleware 通常是单独管理的。这种实践为开发者提供了更加模块化和标准化的代码结构，尤其在大型项目中，有助于新开发者快速熟悉代码。
+- 在一些项目中，modules/users/entities 和 database/entities 同时存在是为了平衡模块化和全局性需求, 模块中的实体可以通过 extends 或 组合 的方式扩展全局实体。例如：
+    ```typescript
+    // database/entities/user.entity.ts
+    @Entity('users')
+    export class UserEntity {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    name: string;
+    }
+
+    // modules/users/entities/user.entity.ts
+    import { UserEntity } from 'database/entities/user.entity';
+
+    export class User extends UserEntity {
+    // 模块特定字段或方法
+    isActive: boolean;
+    }
+    ```
