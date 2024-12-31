@@ -82,7 +82,7 @@ src/
 
 ## 配置
 ```typescript
-// 配置读取 - NODE_ENV 环境变量
+// NODE_ENV 环境变量
 Env.get()
 
 // 其他配置
@@ -92,4 +92,10 @@ this.configSvc.get<string>('app.name')
 appConfig().app.name
 
 // 尽量不直接使用 process.env
+```
+
+## 判断环境
+```typescript
+Env.is(EnvType.DEVELOPMENT)
+Env.isDev()
 ```

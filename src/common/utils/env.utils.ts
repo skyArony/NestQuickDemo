@@ -27,6 +27,18 @@ export class Env {
     return process.env.NODE_ENV === env;
   }
 
+  static isProd(): boolean {
+    return Env.is(EnvType.PRODUCTION);
+  }
+
+  static isDev(): boolean {
+    return Env.is(EnvType.DEVELOPMENT);
+  }
+
+  static isTest(): boolean {
+    return Env.is(EnvType.TEST);
+  }
+
   /**
    * 返回 .env.* 文件路径
    * 优先级: .env.xxx > .env
