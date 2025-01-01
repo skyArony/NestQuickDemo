@@ -42,9 +42,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     // 根据 Status 使用不同的错误级别
     if (status >= HttpStatus.INTERNAL_SERVER_ERROR) {
-      this.logger.error(`${exception.stack}`);
+      this.logger.error(`${request.method} ${request.url} | ${stack}`);
     } else if (status >= HttpStatus.BAD_REQUEST) {
-      this.logger.warn(`${exception.stack}`);
+      this.logger.warn(`${request.method} ${request.url} | ${stack}`);
     }
 
     // 如果怀疑 DDos 攻击, 可以打印更多信息
