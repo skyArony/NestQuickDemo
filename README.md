@@ -7,6 +7,7 @@
 - [x] 用户模块
 - [x] JWT模块 & 跳过鉴权装饰器
 - [x] TypeORM 模块
+- [x] Prisma 模块
 
 # 项目结构
 ```
@@ -102,4 +103,54 @@ Env.isDev()
 ## 获取当前类名的日志实例
 ```typescript
 private readonly logger = new Logger(this.constructor.name);
+```
+
+## Prisma
+```bash
+# 初始化
+pnpx prisma init
+
+# 首次创建 schema.prisma 时
+# DB -> schema.prisma
+pnpx db pull
+
+# 每次修改 schema.prisma 后
+# schema.prisma -> Prisma Client
+pnpx prisma generate
+
+# 启动 Prisma Studio
+pnpx prisma studio
+
+# ================== 数据库迁移 ==================
+
+# 开发模式下的迁移: 生成迁移文件并直接执行
+#   --name: 指定迁移文件的名称。
+#   --create-only: 只创建迁移文件，不应用迁移。
+#   --dry-run: 模拟迁移，但不实际执行 SQL。
+pnpx prisma migrate dev --name init
+
+# 重置数据库
+prisma migrate reset  # 清空数据库并重新应用迁移（会有交互式提示）
+prisma migrate reset -f #  清空数据库并重新应用迁移 (不会提示)
+
+# 生产环境下的迁移
+# - 它会检查数据库中已应用的迁移，并应用所有尚未应用的迁移文件，将数据库更新到最新版本。
+# - 非交互式，不会提示
+#   --skip-generate: 跳过代码生成
+prisma migrate deploy # 应用所有未应用的迁移
+prisma migrate deploy --skip-generate # 跳过代码生成, 不重新生成 Prisma Client
+
+# 查看迁移状态
+# 用于查看当前数据库的迁移状态，包括已应用的迁移和未应用的迁移
+prisma migrate status  # 显示迁移状态
+
+# 解决迁移冲突 (危险操作)
+# 当你手动修改数据库结构后，可能会导致迁移冲突，你可以使用 prisma migrate resolve 将迁移标记为已应用，即使它没有实际执行。
+prisma migrate resolve --applied <migration_name>  # 标记 <migration_name> 为已应用
+
+# 比较迁移状态
+prisma migrate diff
+
+# 手动创建迁移, 手动创建一个空的迁移文件
+prisma migrate create
 ```

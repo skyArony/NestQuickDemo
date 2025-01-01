@@ -11,6 +11,7 @@ import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
 import { Env } from '@app/common/utils/env.utils';
 import appConfig from '@app/config/app.config';
 import { LoggerMiddleware } from '@app/middleware/logger.middleware';
+import { PrismaService } from '@app/prisma.service';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { LoggerMiddleware } from '@app/middleware/logger.middleware';
   controllers: [AppController],
   providers: [
     AppService,
+    PrismaService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

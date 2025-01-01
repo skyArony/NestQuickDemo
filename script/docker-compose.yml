@@ -1,5 +1,27 @@
 version: '3.9'
 services:
+  postgres:
+    image: postgres:17.2
+    # container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: admin # 设置 PostgreSQL 用户密码, 这是唯一一个必须设置的环境变量, 其他用户名和数据库名默认都是 postgres
+      TZ: Asia/Shanghai # 设置时区，替换为需要的时区
+    ports:
+      - 5432:5432 # 将 PostgreSQL 默认端口映射到主机
+    volumes:
+      - /var/lib/postgresql/data # 使用匿名卷持久化数据存储
+
+  pgadmin4:
+    # container_name: my_pgadmin4
+    image: dpage/pgadmin4:8.14.0
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'admin@example.com'
+      PGADMIN_DEFAULT_PASSWORD: 'admin'
+    volumes:
+      - /var/lib/pgadmin
+    ports:
+      - 8080:80
+
   mysql:
     # container_name: mysql
     image: mysql:8.2.0
@@ -7,8 +29,8 @@ services:
     ports:
       - 3306:3306
     # 生产环境请使用下面的配置
-    # volumes:
-    # - /data/data/MySQL:/var/lib/mysql
+    volumes:
+      - /var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${APP_NAME}${PASSWORD_SUFFIX}
       TZ: Asia/Shanghai
