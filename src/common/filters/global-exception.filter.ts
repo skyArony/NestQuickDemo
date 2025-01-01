@@ -47,7 +47,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       this.logger.warn(`${request.method} ${request.url} | ${stack}`);
     }
 
-    // 如果怀疑 DDos 攻击, 可以打印更多信息
+    // NOTE: 如果怀疑 DDos 攻击, 可以打印更多信息
     // this.logger.debug(
     //   `DDos: ${request.method} ${status} ${request.ip} ${request.hostname} ${request.url} ${request.headers['user-agent']}`,
     // );
@@ -75,7 +75,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const stack = exception.stack;
 
     this.logger.error(
-      `${request.method} ${request.url} ${status} | ${exception.stack}`,
+      `${request.method} ${status} ${message} ${request.url} | ${stack}`,
     );
 
     const errRsp: Rsp = {
