@@ -1,13 +1,12 @@
 # 目前有的模块
-- [x] 用户模块
-- [x] JWT模块 & 跳过鉴权装饰器
-- [x] TypeORM 模块
+- [x] `.env` 读取 & ConfigModule 全局配置模块
 - [x] 统一错误处理模块
 - [x] 统一返回格式模块
 - [x] 基础日志使用示例
-- [x] `.env` 读取 & ConfigModule 全局配置模块
 - [x] 请求记录打点
-
+- [x] 用户模块
+- [x] JWT模块 & 跳过鉴权装饰器
+- [x] TypeORM 模块
 
 # 项目结构
 ```
@@ -98,4 +97,9 @@ appConfig().app.name
 ```typescript
 Env.is(EnvType.DEVELOPMENT)
 Env.isDev()
+```
+
+## 获取当前类名的日志实例
+```typescript
+private readonly logger = new Logger(this.constructor.name);
 ```

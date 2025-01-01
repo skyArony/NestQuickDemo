@@ -17,7 +17,7 @@ import { Response } from '../interfaces/response.interface';
  */
 @Injectable()
 export default class ResponseFormatInterceptor implements NestInterceptor {
-  private readonly logger = new Logger(ResponseFormatInterceptor.name);
+  private readonly logger = new Logger(this.constructor.name);
 
   constructor(private reflector: Reflector) {}
 
