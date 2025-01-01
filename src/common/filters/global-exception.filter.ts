@@ -74,9 +74,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const message = exception.message || null;
     const stack = exception.stack;
 
-    this.logger.error(
-      `${request.method} ${status} ${message} ${request.url} | ${stack}`,
-    );
+    this.logger.error(`${request.method} ${status} ${request.url} | ${stack}`);
 
     const errRsp: Rsp = {
       code: status,
