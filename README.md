@@ -8,6 +8,7 @@
 - [x] JWT模块 & 跳过鉴权装饰器
 - [x] TypeORM 模块
 - [x] Prisma 模块
+- [ ] Swagger
 
 # 项目结构
 ```
