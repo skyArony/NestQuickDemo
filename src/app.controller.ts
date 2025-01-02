@@ -1,7 +1,7 @@
 import { Controller, Get, HttpException, Logger, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Public } from '@app/modules/auth/auth.decorator';
-import { PrismaService } from '@app/prisma.service';
+import { PrismaService } from '@app/modules/prisma/prisma.service';
 
 @Public()
 @Controller()
