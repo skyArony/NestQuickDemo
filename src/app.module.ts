@@ -14,6 +14,7 @@ import { PrismaModule } from '@app/modules/prisma/prisma.module';
 import { PostsModule } from '@app/modules/posts/posts.module';
 import { MetricsModule } from '@app/modules/metrics/metrics.module';
 import { MetricsMiddleware } from '@app/modules/metrics/metrics.middleware';
+import { HealthModule } from '@app/modules/health/health.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { MetricsMiddleware } from '@app/modules/metrics/metrics.middleware';
     PrismaModule, // 全局模块仍需要在根模块引入
     PostsModule,
     MetricsModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [

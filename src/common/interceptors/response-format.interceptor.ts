@@ -37,8 +37,9 @@ export default class ResponseFormatInterceptor implements NestInterceptor {
     const req = context.switchToHttp().getRequest();
     const path = req.originalUrl || req.url; // 兼容处理
 
-    // 如果路径是 `/metrics`，直接跳过
-    if (path.startsWith('/metrics')) {
+    // /metrics - Prometheus 监控指标
+    // /health - 健康检查
+    if (path.startsWith('/metrics') || path.startsWith('/health')) {
       return next.handle();
     }
 

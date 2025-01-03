@@ -35,6 +35,13 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
+    // /health - 健康检查属于特殊情况
+    if (request.url.startsWith('/health')) {
+      return response
+        .status(HttpStatus.SERVICE_UNAVAILABLE)
+        .json(exception.getResponse());
+    }
+
     // 获取异常信息
     const status = exception.getStatus();
     const message = exception.message;

@@ -15,6 +15,7 @@
 - [x] Prisma 模块
 - [x] Swagger 模块
 - [x] Metrics 模块
+- [x] 健康检测 & 优雅关闭
 
 ### 可选功能模块
 - [x] TypeORM 模块
