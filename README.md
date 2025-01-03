@@ -1,14 +1,25 @@
 # 目前有的模块
+
+### 核心功能模块
 - [x] `.env` 读取 & ConfigModule 全局配置模块
 - [x] 统一错误处理模块
 - [x] 统一返回格式模块
 - [x] 基础日志使用示例
+- [x] Cluster 多进程模块
+- [ ] 本地文件日志 (还不确定是否必要)
+
+### 常用功能模块
 - [x] 请求记录打点
 - [x] 用户模块
 - [x] JWT模块 & 跳过鉴权装饰器
-- [x] TypeORM 模块
 - [x] Prisma 模块
-- [ ] Swagger
+- [x] Swagger 模块
+- [ ] Metrics 模块
+
+### 可选功能模块
+- [x] TypeORM 模块
+- [x] RESTful Resource 示例
+- [x] 暴露 HTTPS 端口
 
 # 项目结构
 ```
