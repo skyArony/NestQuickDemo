@@ -44,7 +44,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     // 获取异常信息
     const status = exception.getStatus();
-    const message = exception.message;
+    const message = exception.getResponse()['message'] || exception.message;
     const stack = exception.stack;
 
     // 根据 Status 使用不同的错误级别
