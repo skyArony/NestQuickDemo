@@ -17,10 +17,10 @@
 - [x] Metrics 模块
 - [x] 健康检测 & 优雅关闭
 - [x] 全局验证管道, 验证请求参数
+- [x] RESTful Resource 示例
 
 ### 可选功能模块
 - [x] TypeORM 模块
-- [x] RESTful Resource 示例
 - [x] 暴露 HTTPS 端口
 
 # 项目结构
