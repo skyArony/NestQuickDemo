@@ -11,7 +11,7 @@ import { Gauge } from 'prom-client';
 export class AppController {
   private readonly logger = new Logger(AppController.name);
 
-  @InjectMetric(Metrics.APP_VERSION)
+  @InjectMetric(Metrics.APP_INFO)
   private readonly appVersion: Gauge;
 
   constructor(

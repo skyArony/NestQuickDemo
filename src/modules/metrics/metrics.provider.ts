@@ -6,14 +6,14 @@ import {
 
 // 用于定义指标名的枚举
 export enum Metrics {
-  APP_VERSION = 'app_version',
+  APP_INFO = 'app_info',
   HTTP_REQUESTS_TOTAL = 'http_requests_total',
   HTTP_REQUEST_DURATION_SECONDS = 'http_request_duration_seconds',
 }
 
 export const metricsProviders = [
   makeGaugeProvider({
-    name: Metrics.APP_VERSION,
+    name: Metrics.APP_INFO,
     help: 'The current version of the application',
     labelNames: ['version'],
   }),
