@@ -38,11 +38,10 @@ export default class ResponseFormatInterceptor implements NestInterceptor {
     const ctx = context.switchToHttp();
     const rsp = ctx.getResponse<Response>();
     const req = ctx.getRequest<Request>();
-    const path = req.originalUrl || req.url; // 兼容处理
 
     // /metrics - Prometheus 监控指标
     // /health - 健康检查
-    if (path.startsWith('/metrics') || path.startsWith('/health')) {
+    if (req.path.startsWith('/metrics') || req.path.startsWith('/health')) {
       return next.handle();
     }
 
