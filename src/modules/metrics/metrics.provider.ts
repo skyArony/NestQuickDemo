@@ -14,7 +14,7 @@ export enum Metrics {
 export const metricsProviders = [
   makeGaugeProvider({
     name: Metrics.APP_INFO,
-    help: 'The current version of the application',
+    help: 'The critical info of the application',
     labelNames: ['version'],
   }),
 
