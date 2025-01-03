@@ -5,9 +5,8 @@ import { UserModule } from './modules/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './modules/auth/auth.module';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
-import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
 import { Env } from '@app/common/utils/env.utils';
 import appConfig from '@app/config/app.config';
 import { LoggerMiddleware } from '@app/middleware/logger.middleware';
@@ -43,10 +42,6 @@ import { PostsModule } from '@app/modules/posts/posts.module';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
-    },
-    {
-      provide: APP_FILTER,
-      useClass: GlobalExceptionFilter,
     },
   ],
 })
