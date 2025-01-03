@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import ResponseFormatInterceptor from './common/interceptors/response-format.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { GlobalExceptionFilter } from '@app/common/filters/global-exception.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(
     new ResponseFormatInterceptor(app.get(Reflector)), // 统一返回结构
   );
+
+  // 启用全局验证管道, 对请求参数进行验证, 依赖 class-validator 和 class-transformer
+  app.useGlobalPipes(new ValidationPipe());
 
   // Swagger API 文档
   // 地址：http://localhost:3001/api
