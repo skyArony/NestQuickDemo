@@ -34,6 +34,14 @@ export default class ResponseFormatInterceptor implements NestInterceptor {
       return next.handle();
     }
 
+    const req = context.switchToHttp().getRequest();
+    const path = req.originalUrl || req.url; // 兼容处理
+
+    // 如果路径是 `/metrics`，直接跳过
+    if (path.startsWith('/metrics')) {
+      return next.handle();
+    }
+
     // 根据上下文类型，做不同的处理
     const ctxType = context.getType();
     switch (<string>ctxType) {

@@ -14,7 +14,7 @@
 - [x] JWT模块 & 跳过鉴权装饰器
 - [x] Prisma 模块
 - [x] Swagger 模块
-- [ ] Metrics 模块
+- [x] Metrics 模块
 
 ### 可选功能模块
 - [x] TypeORM 模块

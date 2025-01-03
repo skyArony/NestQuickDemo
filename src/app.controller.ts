@@ -2,11 +2,17 @@ import { Controller, Get, HttpException, Logger, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Public } from '@app/modules/auth/auth.decorator';
 import { PrismaService } from '@app/modules/prisma/prisma.service';
+import { InjectMetric } from '@willsoto/nestjs-prometheus';
+import { Metrics } from '@app/modules/metrics/metrics.provider';
+import { Gauge } from 'prom-client';
 
 @Public()
 @Controller()
 export class AppController {
   private readonly logger = new Logger(AppController.name);
+
+  @InjectMetric(Metrics.APP_VERSION)
+  private readonly appVersion: Gauge;
 
   constructor(
     private appService: AppService,
@@ -16,6 +22,7 @@ export class AppController {
   @Get()
   getHello(): string {
     this.logger.log('Hello World!');
+    this.appVersion.set(2);
     return this.appService.getHello();
   }
 
