@@ -7,14 +7,14 @@ export class LoggerMiddleware implements NestMiddleware {
 
   use(req: Request, res: Response, next: NextFunction) {
     // 请求进入
-    const { method, originalUrl } = req;
+    const { method, path } = req;
     const startTime = Date.now();
 
     // 请求完成
     res.on('finish', () => {
       const { statusCode, statusMessage } = res;
       const duration = Date.now() - startTime;
-      const logText = `${method} ${statusCode} ${statusMessage} ${originalUrl} - ${duration}ms`;
+      const logText = `${method} ${statusCode} ${statusMessage} ${path} - ${duration}ms`;
 
       if (statusCode >= 500) {
         return this.logger.error(logText);

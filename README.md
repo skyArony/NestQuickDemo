@@ -69,6 +69,7 @@ src/
 ```
 
 - 在 NestJS 社区和官方文档中，middleware 通常是单独管理的。这种实践为开发者提供了更加模块化和标准化的代码结构，尤其在大型项目中，有助于新开发者快速熟悉代码。
+- `common/interceptors` 放的是那种具体模块无关的拦截器, 如果某个拦截器和模块强关联, 那么和模块放在一起, 例如 metrics 模块的拦截器。
 - 在一些项目中，modules/users/entities 和 database/entities 同时存在是为了平衡模块化和全局性需求, 模块中的实体可以通过 extends 或 组合 的方式扩展全局实体。例如：
     ```typescript
     // database/entities/user.entity.ts
@@ -165,4 +166,33 @@ prisma migrate diff
 
 # 手动创建迁移, 手动创建一个空的迁移文件
 prisma migrate create
+```
+
+# 注意事项
+
+### 中间件的注册影响 req 中的属性
+> 参考 https://github.com/nestjs/nest/issues/4315
+
+```bash
+# 注册为
+# consumer.apply(LoggerMiddleware).forRoutes('*'); // 对所有路由生效
+
+# 请求 localhost:3001/app/test/1?a=1
+console.log(req.originalUrl); # /app/test/1?a=1
+console.log(req.baseUrl); # /app/test/1
+console.log(req.url); # /?a=1
+console.log(req.path); # /
+
+# 是不太符合预期的
+```
+
+```bash
+# 注册为
+# consumer.apply(LoggerMiddleware).forRoutes('/'); // 对所有路由生效
+
+# 请求 localhost:3001/app/test/1?a=1
+console.log(req.originalUrl); # /app/test/1?a=1
+console.log(req.baseUrl); # 空
+console.log(req.url); # /app/test/1?a=1
+console.log(req.path); # /app/test/1
 ```

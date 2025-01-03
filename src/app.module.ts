@@ -12,6 +12,8 @@ import appConfig from '@app/config/app.config';
 import { LoggerMiddleware } from '@app/middleware/logger.middleware';
 import { PrismaModule } from '@app/modules/prisma/prisma.module';
 import { PostsModule } from '@app/modules/posts/posts.module';
+import { MetricsModule } from '@app/modules/metrics/metrics.module';
+import { MetricsMiddleware } from '@app/modules/metrics/metrics.middleware';
 
 @Module({
   imports: [
@@ -35,18 +37,20 @@ import { PostsModule } from '@app/modules/posts/posts.module';
     AuthModule,
     PrismaModule, // 全局模块仍需要在根模块引入
     PostsModule,
+    MetricsModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
   ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*'); // 对所有路由生效
+    consumer.apply(LoggerMiddleware).forRoutes('/'); // 对所有路由生效
+    consumer.apply(MetricsMiddleware).forRoutes('/'); // 对所有路由生效
   }
 }
