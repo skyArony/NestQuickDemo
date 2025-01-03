@@ -10,7 +10,8 @@ import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IS_SKIP_RSP_FMT } from '../decorators/skip-rsp-fmt.decorator';
-import { Response } from '../interfaces/response.interface';
+import { Request, Response } from 'express';
+import { Response as RspDTO } from '../interfaces/response.interface';
 
 /**
  * 响应格式化拦截器, 当前主要用于统一 http 响应格式
@@ -34,7 +35,9 @@ export default class ResponseFormatInterceptor implements NestInterceptor {
       return next.handle();
     }
 
-    const req = context.switchToHttp().getRequest();
+    const ctx = context.switchToHttp();
+    const rsp = ctx.getResponse<Response>();
+    const req = ctx.getRequest<Request>();
     const path = req.originalUrl || req.url; // 兼容处理
 
     // /metrics - Prometheus 监控指标
@@ -50,10 +53,10 @@ export default class ResponseFormatInterceptor implements NestInterceptor {
         return next.handle().pipe(
           map((data) => {
             return {
-              code: HttpStatus.OK,
+              code: rsp.statusCode || HttpStatus.OK, // 状态码
               message: '成功',
               data,
-            } as Response;
+            } as RspDTO;
           }),
         );
       default:
