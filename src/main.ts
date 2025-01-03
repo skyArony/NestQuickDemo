@@ -17,7 +17,14 @@ async function bootstrap() {
   );
 
   // 启用全局验证管道, 对请求参数进行验证, 依赖 class-validator 和 class-transformer
-  app.useGlobalPipes(new ValidationPipe());
+  // transform 自动转化为 DTO 定义的类型, 比如 "26" => 26, "2021-01-01" => Date
+  // whitelist 严格模式, 只允许 DTO 中定义的字段进入, 其他字段会被过滤掉
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
 
   // Swagger API 文档
   // 地址：http://localhost:3001/api
