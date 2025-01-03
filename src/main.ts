@@ -51,6 +51,7 @@ async function bootstrap() {
 bootstrap();
 
 // 为了利用多核心 CPU, 创建多个工作进程
+// 结合 PM2 的 -i 参数使用: pm2 start dist/main.js -i max
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 // const cluster = require('cluster');
 // const logger = new Logger('Cluster');
