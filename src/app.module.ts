@@ -12,6 +12,7 @@ import { Env } from '@app/common/utils/env.utils';
 import appConfig from '@app/config/app.config';
 import { LoggerMiddleware } from '@app/middleware/logger.middleware';
 import { PrismaModule } from '@app/modules/prisma/prisma.module';
+import { PostsModule } from '@app/modules/posts/posts.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { PrismaModule } from '@app/modules/prisma/prisma.module';
     UserModule,
     AuthModule,
     PrismaModule, // 全局模块仍需要在根模块引入
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [
