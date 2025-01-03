@@ -52,6 +52,7 @@ import { HealthModule } from '@app/modules/health/health.module';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
+    // 这里务必使用 '/' 而非 '*', 后者的 req.path 和 req.baseUrl 解析不对劲
     consumer.apply(LoggerMiddleware).forRoutes('/'); // 对所有路由生效
     consumer.apply(MetricsMiddleware).forRoutes('/'); // 对所有路由生效
   }
