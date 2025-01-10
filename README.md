@@ -1,6 +1,7 @@
 # 目前有的模块
 
 ### 核心功能模块
+
 - [x] `.env` 读取 & ConfigModule 全局配置模块
 - [x] 统一错误处理模块
 - [x] 统一返回格式模块
@@ -9,6 +10,7 @@
 - [ ] 本地文件日志 (还不确定是否必要)
 
 ### 常用功能模块
+
 - [x] 请求记录打点
 - [x] 用户模块
 - [x] JWT模块 & 跳过鉴权装饰器
@@ -20,10 +22,12 @@
 - [x] RESTful Resource 示例
 
 ### 可选功能模块
+
 - [x] TypeORM 模块
 - [x] 暴露 HTTPS 端口
 
 # 项目结构
+
 ```
 src/
 ├── app.module.ts       # 主模块文件
@@ -73,6 +77,7 @@ src/
 - 在 NestJS 社区和官方文档中，middleware 通常是单独管理的。这种实践为开发者提供了更加模块化和标准化的代码结构，尤其在大型项目中，有助于新开发者快速熟悉代码。
 - `common/interceptors` 放的是那种具体模块无关的拦截器, 如果某个拦截器和模块强关联, 那么和模块放在一起, 例如 metrics 模块的拦截器。
 - 在一些项目中，modules/users/entities 和 database/entities 同时存在是为了平衡模块化和全局性需求, 模块中的实体可以通过 extends 或 组合 的方式扩展全局实体。例如：
+
     ```typescript
     // database/entities/user.entity.ts
     @Entity('users')
@@ -96,6 +101,7 @@ src/
 # 使用细节
 
 ## 配置
+
 ```typescript
 // NODE_ENV 环境变量
 Env.get()
@@ -110,17 +116,20 @@ appConfig().app.name
 ```
 
 ## 判断环境
+
 ```typescript
 Env.is(EnvType.DEVELOPMENT)
 Env.isDev()
 ```
 
 ## 获取当前类名的日志实例
+
 ```typescript
 private readonly logger = new Logger(this.constructor.name);
 ```
 
 ## Prisma
+
 ```bash
 # 初始化
 pnpx prisma init
@@ -173,7 +182,8 @@ prisma migrate create
 # 注意事项
 
 ### 中间件的注册影响 req 中的属性
-> 参考 https://github.com/nestjs/nest/issues/4315
+>
+> 参考 <https://github.com/nestjs/nest/issues/4315>
 
 ```bash
 # 注册为
