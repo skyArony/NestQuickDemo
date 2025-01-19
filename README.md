@@ -132,18 +132,18 @@ private readonly logger = new Logger(this.constructor.name);
 
 ```bash
 # 初始化
-pnpx prisma init
+npx prisma init
 
 # 首次创建 schema.prisma 时
 # DB -> schema.prisma
-pnpx db pull
+npx db pull
 
 # 每次修改 schema.prisma 后
 # schema.prisma -> Prisma Client
-pnpx prisma generate
+npx prisma generate
 
 # 启动 Prisma Studio
-pnpx prisma studio
+npx prisma studio
 
 # ================== 数据库迁移 ==================
 
@@ -151,7 +151,7 @@ pnpx prisma studio
 #   --name: 指定迁移文件的名称。
 #   --create-only: 只创建迁移文件，不应用迁移。
 #   --dry-run: 模拟迁移，但不实际执行 SQL。
-pnpx prisma migrate dev --name init
+npx prisma migrate dev --name init
 
 # 重置数据库
 prisma migrate reset  # 清空数据库并重新应用迁移（会有交互式提示）
